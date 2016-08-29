@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type="text/javascript" src="/socket.io/socket.io.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      //连接websocket后端服务器
+      var socket = io.connect('ws://127.0.0.1:3000');
+      //告诉服务器端有用户登录
+      socket.emit('login', {userid:'111', username:'caijj'});
+
+
+      socket.on('message',function (msg) {
+        console.log(msg);
+      })
+
+      //发送消息
+      function sendMsg(msg) {
+        socket.emit('message',{username:'caijj',content:msg})
+      };
+
+      sendMsg('hello world!');
+    </script>
+
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+  </body>
+</html>
