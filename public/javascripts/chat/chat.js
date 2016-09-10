@@ -83,8 +83,8 @@
             $("#showusername").html(this.username);
 
             //连接websocket后端服务器
-            this.socket = io.connect('ws://172.16.9.52:3000');
-            //通知服务器用户登录
+            this.socket = io.connect('ws://mychat.carp.mopaasapp.com/');
+            //通知服务器用户登录 
             this.socket.emit('login',{userid:this.userid,username:this.username});
             //从服务器接收用户登录广播
             this.socket.on('login',function (loginInfo) {
